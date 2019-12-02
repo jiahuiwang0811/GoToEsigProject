@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/icon_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/add"
+            android:title="Ajouter un trajet" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/list"
+            android:title="Mes trajets" />
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/search"
+            android:title="Chercher un trajet" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/rating"
+            android:title="Evaluer un trajet" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Statistiques" />
+        <item
+            android:id="@+id/nav_quitter"
+            android:icon="@drawable/exit"
+            android:title="Quitter" />
+    </group>
+
+
+</menu>
