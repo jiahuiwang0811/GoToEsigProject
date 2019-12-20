@@ -9,23 +9,23 @@
             android:icon="@drawable/icon_profile"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_ajouter"
             android:icon="@drawable/add"
             android:title="Ajouter un trajet" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_trajet"
             android:icon="@drawable/list"
             android:title="Mes trajets" />
         <item
-            android:id="@+id/nav_tools"
+            android:id="@+id/nav_chercher"
             android:icon="@drawable/search"
             android:title="Chercher un trajet" />
         <item
-            android:id="@+id/nav_share"
+            android:id="@+id/nav_evaluer"
             android:icon="@drawable/rating"
             android:title="Evaluer un trajet" />
         <item
-            android:id="@+id/nav_send"
+            android:id="@+id/nav_statistiques"
             android:icon="@drawable/ic_menu_share"
             android:title="Statistiques" />
         <item
