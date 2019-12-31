@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +14,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
+        implements View.OnClickListener,
+        NavigationView.OnNavigationItemSelectedListener,
         ProfileFragment.OnFragmentInteractionListener,
         AjouterFragment.OnFragmentInteractionListener,
         TrajetFragment.OnFragmentInteractionListener,
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-
+    private Button btnSignin;
 
     // 1 - Declare fragment handled by Navigation Drawer
     private Fragment fragmentProfile;
@@ -45,11 +51,15 @@ public class MainActivity extends AppCompatActivity
     private static final int FRAGMENT_EVALUER = 4;
     private static final int FRAGMENT_STATISTIQUES = 5;
 
+    // 1 - Identifier for Sign-In Activity
+    private static final int RC_SIGN_IN = 123;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnSignin = (Button) findViewById(R.id.activity_main_signin);
+        btnSignin.setOnClickListener(MainActivity.this);
         // Configure all views
 
         this.configureToolBar();
@@ -57,6 +67,24 @@ public class MainActivity extends AppCompatActivity
         this.configureDrawerLayout();
 
         this.configureNavigationView();
+    }
+
+    @Override
+    public void onClick(View v) {
+        startSignInActivity();
+    }
+    // 2 - Launch Sign-In Activity
+    private void startSignInActivity(){
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setTheme(R.style.LoginTheme)
+                        .setAvailableProviders(
+                                Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build()))
+                        .setIsSmartLockEnabled(false, true)
+                        .setLogo(R.drawable.ic_menu_send)
+                        .build(),
+                RC_SIGN_IN);
     }
 
     @Override
