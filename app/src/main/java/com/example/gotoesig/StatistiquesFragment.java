@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -65,7 +69,20 @@ public class StatistiquesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistiques, container, false);
+        View view = inflater.inflate(R.layout.fragment_statistiques, container, false);
+
+        ImageView roundedimag = (ImageView) view.findViewById(R.id.roundedimage);
+        // Load an image using Picasso library
+        Picasso.with(getActivity().getApplicationContext())
+                .load("YOUR IMAGE URL")
+                .into(roundedimag);
+
+        // Load an image using Glide library
+        Glide.with(getActivity().getApplicationContext())
+                .load("YOUR IMAGE URL")
+                .into(roundedimag);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

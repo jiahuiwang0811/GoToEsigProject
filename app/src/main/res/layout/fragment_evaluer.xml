@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EvaluerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+
+        android:id="@+id/fragment_news_rootview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evaluer un trajet "
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/depart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Point de départ : "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/effectuer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Effectué le : "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/personne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personne ayant effectué le trajet: "
+            android:textSize="24sp" />
+
+        <RelativeLayout
+            android:id="@+id/shape_layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="106dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/myCardView1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/roundedimage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/shape_layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="106dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/myCardView2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/roundedimage2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/shape_layout3"
+            android:layout_width="wrap_content"
+            android:layout_height="106dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/myCardView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/roundedimage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Evaluer le trajet :"
+            android:textSize="24sp" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </LinearLayout>
 
 </FrameLayout>

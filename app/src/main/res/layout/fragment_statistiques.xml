@@ -1,22 +1,50 @@
-<LinearLayout
-    android:id="@+id/fragment_news_rootview"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_news_rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gotoesig.StatistiquesFragment"
-    android:gravity="center"
-    android:background="#EDD9CF">
 
-    <TextView
-        android:id="@+id/fragment_Statistiques"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dip"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        android:textAlignment="center"
-        android:text="Nous pourrions afficher un fil d'actualité ici non ?"/>
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.gotoesig.StatistiquesFragment">
+
+    <RelativeLayout
+        android:id="@+id/shape_layout"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/myCardView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/roundedimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+    </LinearLayout>
 
 </LinearLayout>
