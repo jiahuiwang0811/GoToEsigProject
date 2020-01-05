@@ -1,6 +1,7 @@
 package com.example.gotoesig;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,16 +9,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.IOException;
+
+import static androidx.core.provider.FontsContractCompat.FontRequestCallback.RESULT_OK;
+
+//import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -28,7 +45,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,8 +60,13 @@ public class ProfileFragment extends Fragment {
     private TextView TVusername;
     private TextView TVemail;
     private ImageView photoProfil;
+    private Button BtnPhoto;
     private OnFragmentInteractionListener mListener;
-
+    private StorageReference Folder;
+    //Uri file = Uri.fromFile(new File("gs://gotoesig-64e20.appspot.com/IMG_8080.JPG"));
+    //StorageReference riversRef = mStorageRef.child("images/IMG_8080.jpg");
+    //File localFile;
+    private static final int ImageBack = 1;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -70,11 +92,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Folder = FirebaseStorage.getInstance().getReference().child("ImageFolder");
         /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }*/
-
     }
 
     @Override
@@ -84,6 +106,8 @@ public class ProfileFragment extends Fragment {
         TVusername = RootView.findViewById(R.id.profile_username);
         TVemail = RootView.findViewById(R.id.profile_email);
         photoProfil = RootView.findViewById(R.id.imageViewPdp);
+        BtnPhoto = RootView.findViewById(R.id.profile_btn);
+        BtnPhoto.setOnClickListener(this);
         updateUIWhenCreating();
         // Inflate the layout for this fragment
         return RootView;
@@ -94,6 +118,35 @@ public class ProfileFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    public void onClick (View view){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, ImageBack);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("request Code : " + requestCode);
+        System.out.println("result Code : " + resultCode);
+        System.out.println("data : " + data);
+        //if(resultCode == ImageBack ){
+            Log.d("profil", "image Back");
+          //  if(resultCode == RESULT_OK){
+                Log.d("profil", "Result ok");
+                Uri ImageData = data.getData();
+                final StorageReference Imagename = Folder.child("image"+ImageData.getLastPathSegment());
+                Imagename.putFile(ImageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d("profil", "image uploaded");
+                        Toast.makeText(getActivity(), "Photo uploaded", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            //}
+        //}
     }
 
     @Override
@@ -174,4 +227,5 @@ public class ProfileFragment extends Fragment {
             Log.d("profil", "non connecte" );
         }
     }
+
 }
