@@ -13,7 +13,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-<<<<<<< HEAD
         android:orientation="vertical"
         android:padding="@dimen/activity_margin">
 
@@ -47,6 +46,7 @@
 
         <!-- Input fields -->
         <LinearLayout
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorTrajet"
@@ -76,18 +76,13 @@
             android:id="@+id/container_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
             <!-- Label -->
             <TextView
                 android:text="@string/edit_date"
                 style="@style/ModeTransport"
                 android:layout_weight="2"/>
-<!--                android:fontFamily="sans-serif-light"-->
-<!--                android:textAppearance="?android:textAppearanceMedium"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_weight="3"-->
-<!--                android:textColor="@color/colorAccent" />-->
 
             <EditText
                 android:id="@+id/date_jour"
@@ -164,6 +159,7 @@
             android:id="@+id/container_retard_tolere"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
             <TextView
                 android:text="@string/retard_tolere"
@@ -188,6 +184,7 @@
             android:id="@+id/container_nbr_place_dispo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
             <TextView
                 android:text="@string/nbr_place_dispo"
@@ -202,6 +199,16 @@
                 android:layout_weight="1"/>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/trajet_valid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorTrajet"
+            android:text="Valider"
+            android:textColor="#FFFFFF"
+            />
     </LinearLayout>
 
 
