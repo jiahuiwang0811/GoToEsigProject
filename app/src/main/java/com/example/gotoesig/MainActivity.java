@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +18,11 @@ import androidx.fragment.app.Fragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener,
@@ -33,6 +38,9 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Button btnSignin;
+    private ListView lv;
+    private CustomAdapter customAdapter;
+    public static ArrayList<Model> modelArrayList;
 
     // 1 - Declare fragment handled by Navigation Drawer
     private Fragment fragmentProfile;
@@ -58,6 +66,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        lv = (ListView) findViewById(R.id.listView);
+
+        modelArrayList = getModel();
+        customAdapter = new CustomAdapter(this);
+        //lv.setAdapter(customAdapter);
+
         btnSignin = (Button) findViewById(R.id.activity_main_signin);
         btnSignin.setOnClickListener(MainActivity.this);
         // Configure all views
@@ -67,6 +81,29 @@ public class MainActivity extends AppCompatActivity
         this.configureDrawerLayout();
 
         this.configureNavigationView();
+    }
+
+    private ArrayList<Model> getModel(){
+        ArrayList<Model> list = new ArrayList<>();
+        for(int i = 0; i < 5; i++){
+
+            Date date = null;
+            String date1 = "22/06/2006";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            try {
+                date = simpleDateFormat.parse(date1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Model model = new Model();
+            model.setJour(date);
+            model.setHoraire("9h à 12h");
+            model.setLieuDepart("Rouen centre: Palais de justice");
+            list.add(model);
+        }
+        return list;
     }
 
     @Override
@@ -155,6 +192,10 @@ public class MainActivity extends AppCompatActivity
         this.drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    public static void changeFrag (int number) {
+        //showFragment(number);
     }
 
     // 5 - Show fragment according an Identifier
