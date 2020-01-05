@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 
 /**
@@ -27,7 +31,9 @@ public class EvaluerFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private ImageView photo1;
+    private ImageView photo2;
+    private ImageView photo3;
     private OnFragmentInteractionListener mListener;
 
     public EvaluerFragment() {
@@ -55,17 +61,31 @@ public class EvaluerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View RootView = inflater.inflate(R.layout.fragment_evaluer, container, false);
+        photo1 = RootView.findViewById(R.id.roundedimage1);
+        photo2 = RootView.findViewById(R.id.roundedimage2);
+        photo3 = RootView.findViewById(R.id.roundedimage3);
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/gotoesig-64e20.appspot.com/o/ImageFolder%2Fimageimage%3A964013?alt=media&token=1fd0f1fa-9da1-47fe-8f12-0f80c10d80e6")
+                .apply(RequestOptions.circleCropTransform())
+                .into(photo1);
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/gotoesig-64e20.appspot.com/o/ImageFolder%2Fimageimage%3A964037?alt=media&token=371119d7-84ba-43b3-8d58-3981755ac8c7")
+                .apply(RequestOptions.circleCropTransform())
+                .into(photo2);
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/gotoesig-64e20.appspot.com/o/ImageFolder%2Fimageimage%3A964033?alt=media&token=7a65b253-11dc-44e8-808a-e4e8d1f416a5")
+                .apply(RequestOptions.circleCropTransform())
+                .into(photo3);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_evaluer, container, false);
+        return RootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

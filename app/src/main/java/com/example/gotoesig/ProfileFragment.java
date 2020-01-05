@@ -136,13 +136,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             Log.d("profil", "image Back");
           //  if(resultCode == RESULT_OK){
                 Log.d("profil", "Result ok");
-                Uri ImageData = data.getData();
+                final Uri ImageData = data.getData();
                 final StorageReference Imagename = Folder.child("image"+ImageData.getLastPathSegment());
                 Imagename.putFile(ImageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Log.d("profil", "image uploaded");
                         Toast.makeText(getActivity(), "Photo uploaded", Toast.LENGTH_SHORT).show();
+                        Glide.with(getActivity())
+                                .load(ImageData.toString())
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(photoProfil);
                     }
                 });
             //}
