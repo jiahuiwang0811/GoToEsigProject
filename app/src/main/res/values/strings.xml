@@ -11,4 +11,16 @@
     <string name="info_no_email_found">no email found</string>
     <string name="info_no_username_found">no username found</string>
 
+    <string name="mode_transport">Mode de Transport</string>
+
+    <string name="hint_position">Votre position</string>
+
+    <string name="hint_destination">Destination</string>
+
+    <string name="edit_date">Date</string>
+
+    <string name="retard_tolere">Retard Toléré</string>
+
+    <string name="nbr_place_dispo">Nombre de places disponibles</string>
+
 </resources>
