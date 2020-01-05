@@ -195,7 +195,7 @@
                 android:id="@+id/edit_nbr_place_dispo"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:inputType="textCapWords"
+                android:inputType = "numberPassword"
                 android:layout_weight="1"/>
 
         </LinearLayout>
