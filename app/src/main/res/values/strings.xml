@@ -23,4 +23,12 @@
 
     <string name="nbr_place_dispo">Nombre de places disponibles</string>
 
+    <string name="voiture">Voiture</string>
+
+    <string name="velo">Vélo</string>
+
+    <string name="metro">Métro</string>
+
+    <string name="pied">A pieds</string>
+
 </resources>

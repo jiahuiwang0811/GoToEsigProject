@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_method_transport">
+        <item>@string/voiture</item>
+        <item>@string/velo</item>
+        <item>@string/metro</item>
+        <item>@string/pied</item>
+    </string-array>
+</resources>

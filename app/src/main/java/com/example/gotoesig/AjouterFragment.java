@@ -3,12 +3,24 @@ package com.example.gotoesig;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import com.example.gotoesig.data.TrajetContract.TrajetEntry;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.gotoesig.data.TrajetContract;
 
 import androidx.fragment.app.Fragment;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 /**
@@ -24,6 +36,11 @@ public class AjouterFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private int retard = 0;
+    private Spinner mTransportSpinner;
+
+    private int mTransport = TrajetEntry.TRANSPORT_VOITURE;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,7 +83,16 @@ public class AjouterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ajouter, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ajouter, container, false);
+        Button decrement = (Button) rootView.findViewById(R.id.retard_decrement);
+        Button increment = (Button) rootView.findViewById(R.id.retard_increment);
+
+        mTransportSpinner = (Spinner) rootView.findViewById(R.id.spinner_transport);
+        setupSpinner(rootView);
+        decrement.setOnClickListener(mButtonDecrement);
+        increment.setOnClickListener(mButtonIncrement);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -86,6 +112,72 @@ public class AjouterFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
+    public void setupSpinner(View view) {
+        ArrayAdapter transportSpinnerAdapter = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.array_method_transport, android.R.layout.simple_spinner_item);
+
+        transportSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+
+        mTransportSpinner.setAdapter(transportSpinnerAdapter);
+
+        mTransportSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selection = (String) parent.getItemAtPosition(position);
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(getString(R.string.voiture))) {
+                        mTransport = TrajetEntry.TRANSPORT_VOITURE;
+                    } else if (selection.equals(getString(R.string.velo))) {
+                        mTransport = TrajetEntry.TRANSPORT_VELO;
+                    } else if (selection.equals(getString(R.string.metro))) {
+                        mTransport = TrajetEntry.TRANSPORT_METRO;
+                    } else {
+                        mTransport = TrajetEntry.TRANSPORT_PIEDS;
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mTransport = TrajetEntry.TRANSPORT_VOITURE;
+            }
+        });
+    }
+
+    public void display (int number) {
+        TextView retard_tolere = (TextView) getView().findViewById(R.id.edit_retard_tolere);
+        retard_tolere.setText("" + number);
+    }
+
+
+    private View.OnClickListener mButtonDecrement = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String text = "Le retard toléré doit être plus grand ou égal à 0";
+            int duration = Toast.LENGTH_SHORT;
+            Context context = getView().getContext();
+            if (retard == 0) {
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                display(retard);
+                return;
+            } else {
+                retard--;
+                display(retard);
+            }
+        }
+    };
+
+    private View.OnClickListener mButtonIncrement = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            retard++;
+            display(retard);
+        }
+    };
+
+
 
     @Override
     public void onDetach() {

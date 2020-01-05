@@ -36,10 +36,10 @@
                 <!-- Gender drop-down spinner -->
                 <Spinner
                     android:id="@+id/spinner_transport"
-                    android:layout_height="48dp"
                     android:layout_width="wrap_content"
+                    android:layout_height="48dp"
                     android:paddingRight="16dp"
-                    android:spinnerMode="dropdown"/>
+                    android:spinnerMode="dropdown" />
             </LinearLayout>
 
         </LinearLayout>
@@ -91,6 +91,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:inputType="date"
+                android:maxLength="2"
                 android:hint="JJ"/>
 
             <TextView
@@ -106,6 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:inputType="date"
+                android:maxLength="2"
                 android:hint="MM"/>
 
             <TextView
@@ -121,6 +125,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1.5"
+                android:inputType="date"
+                android:maxLength="4"
                 android:hint="AAAA"/>
 
             <TextView
@@ -136,7 +142,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:hint="h"/>
+                android:inputType="datetime"
+                android:hint="h"
+                android:maxLength="2"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -151,6 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:inputType="datetime"
+                android:maxLength="2"
                 android:hint="min"/>
 
         </LinearLayout>
@@ -163,21 +173,48 @@
             android:orientation="horizontal">
             <TextView
                 android:text="@string/retard_tolere"
-                style="@style/ModeTransport"
-                android:layout_weight="1"/>
-
-            <EditText
-                android:id="@+id/edit_retard_tolere"
-                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="sans-serif-medium"
+                android:textAppearance="?android:textAppearanceSmall"
                 android:layout_width="0dp"
-                android:inputType="textCapWords"
-                android:layout_weight="2"/>
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="mins"
-                android:layout_alignParentRight="true"/>
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/retard_decrement"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="-"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/edit_retard_tolere"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="0"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:textSize="16sp"/>
+
+                <Button
+                    android:id="@+id/retard_increment"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="+"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mins"
+                    android:layout_alignParentRight="true"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -195,7 +232,7 @@
                 android:id="@+id/edit_nbr_place_dispo"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:inputType = "numberPassword"
+                android:inputType = "numberDecimal"
                 android:layout_weight="1"/>
 
         </LinearLayout>
