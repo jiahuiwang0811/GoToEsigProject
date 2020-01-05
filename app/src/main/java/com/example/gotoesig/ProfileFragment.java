@@ -210,6 +210,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         .apply(RequestOptions.circleCropTransform())
                         .into(photoProfil);
             } else{
+                Glide.with(this)
+                        .load("https://firebasestorage.googleapis.com/v0/b/gotoesig-64e20.appspot.com/o/ImageFolder%2Fimageimage%3A964013?alt=media&token=1fd0f1fa-9da1-47fe-8f12-0f80c10d80e6")
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(photoProfil);
+
                 Log.d("profil", "non photo de profil" );
             }
 
