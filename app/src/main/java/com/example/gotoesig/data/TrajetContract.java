@@ -40,6 +40,8 @@ public class TrajetContract {
 
         public final static String COLUMN_TRAJET_DEPART = "depart";
 
+        public final static String COLUMN_TRAJET_DESTINATION = "destination";
+
         public final static String COLUMN_TRAJET_DATE = "date";
 
         public final static String COLUMN_TRAJET_RETARD_TOLERE = "retard_tolere";
