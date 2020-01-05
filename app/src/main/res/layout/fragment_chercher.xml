@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="10sp"
     tools:context=".ChercherFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -18,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cherche_title"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -86,8 +87,8 @@
         </TableLayout>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_width="375dp"
+            android:layout_height="wrap_content">
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -96,11 +97,38 @@
 
             <EditText
                 android:id="@+id/editText3"
-                android:layout_width="wrap_content"
+                android:layout_width="82dp"
                 android:layout_height="67dp"
                 android:ems="10"
                 android:inputType="date" />
+
         </TableRow>
+
+        <TableRow
+            android:layout_width="347dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:gravity="center"
+                android:text="Nombre de places souhaitées :"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="67dp"
+                android:layout_height="match_parent" />
+
+        </TableRow>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00BCD4"
+            android:text="Valider" />
 
     </LinearLayout>
 
