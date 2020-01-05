@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         android:orientation="vertical"
         android:padding="@dimen/activity_margin">
 
@@ -206,5 +207,8 @@
 
 
 
+=======
+        android:text="Test" />
+>>>>>>> 406304f9c93e5f5098fa80e1ea8172ccbd97189a
 
 </FrameLayout>
